@@ -25,7 +25,7 @@ class PlayerInputSystem : IteratingSystem(Family.all(
         return Gdx.input.isKeyPressed(key)
     }
 
-    override fun processEntity(entity: Entity?, deltaTime: Float) {
+    override fun processEntity(entity: Entity, deltaTime: Float) {
         val velocity = velocityMapper[entity]
         val input = inputMapper[entity]
         val speed = speedMapper[entity]

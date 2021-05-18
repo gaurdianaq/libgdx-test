@@ -11,7 +11,7 @@ class AnimationSystem : IteratingSystem(Family.all(SpriteComponent::class.java, 
     private val spriteMapper: ComponentMapper<SpriteComponent> = ComponentMapper.getFor(SpriteComponent::class.java)
     private val animationMapper: ComponentMapper<AnimationComponent> = ComponentMapper.getFor(AnimationComponent::class.java)
 
-    override fun processEntity(entity: Entity?, deltaTime: Float) {
+    override fun processEntity(entity: Entity, deltaTime: Float) {
         val animation = animationMapper[entity]
         animation.stateTime += deltaTime
         spriteMapper[entity].sprite = animation.getCurrentFrame()
