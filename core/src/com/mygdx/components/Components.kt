@@ -20,16 +20,14 @@ class AnimationComponent(texture: Texture, speed: Float, rows: Int, columns: Int
     }
 
     init {
-        val temp: Array<Array<TextureRegion>> = TextureRegion.split(texture,
+        val animationGrid: Array<Array<TextureRegion>> = TextureRegion.split(texture,
                 texture.width / columns, texture.height / rows)
-        println("temp height is ${temp.size} and temp width is ${temp[0].size}")
         val animationFrames: GDXArray<TextureRegion> = GDXArray(rows * columns)
-        println("animationFrames size is ${animationFrames.size}")
         var index = 0
         for (i in 0 until rows) {
             for (j in 0 until columns) {
                 println(index)
-                animationFrames.add(temp[i][j])
+                animationFrames.add(animationGrid[i][j])
                 ++index
             }
         }
