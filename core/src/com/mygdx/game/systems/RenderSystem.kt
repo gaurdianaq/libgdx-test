@@ -5,10 +5,10 @@ import com.badlogic.ashley.utils.ImmutableArray
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.ScreenUtils
-import com.mygdx.game.PositionComponent
-import com.mygdx.game.SpriteComponent
+import com.mygdx.components.PositionComponent
+import com.mygdx.components.SpriteComponent
 
-class RenderSystem(cameraWidth: Float, cameraHeight: Float) : EntitySystem() {
+class RenderSystem(cameraWidth: Float, cameraHeight: Float) : EntitySystem(2) {
     private lateinit var entities: ImmutableArray<Entity>
 
     private val positionMapper: ComponentMapper<PositionComponent> = ComponentMapper.getFor(PositionComponent::class.java)
@@ -30,8 +30,7 @@ class RenderSystem(cameraWidth: Float, cameraHeight: Float) : EntitySystem() {
         for (entity in entities) {
             val sprite = spriteMapper[entity].sprite
             val position = positionMapper[entity]
-            sprite.setPosition(position.x, position.y)
-            sprite.draw(batch)
+            batch.draw(sprite, position.x, position.y)
         }
         batch.end()
     }
